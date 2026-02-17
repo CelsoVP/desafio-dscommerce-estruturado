@@ -9,17 +9,16 @@ import java.util.Set;
 @Entity
 @Table(name = "tb_category")
 public class Category {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
     @ManyToMany(mappedBy = "categories")
-    private Set<Product> products =  new HashSet<>();
-
+    private Set<Product> products = new HashSet<>();
 
     public Category() {
-
     }
 
     public Category(Long id, String name) {
@@ -47,21 +46,18 @@ public class Category {
         return products;
     }
 
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    }
-
     @Override
-    public final boolean equals(Object o) {
-        if (!(o instanceof Category category)) return false;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        return Objects.equals(getId(), category.getId());
+        Category category = (Category) o;
+
+        return Objects.equals(id, category.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return id != null ? id.hashCode() : 0;
     }
-
-
 }

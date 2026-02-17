@@ -3,6 +3,7 @@ package br.com.celsinhovp.ApiDscommerce.dto;
 import br.com.celsinhovp.ApiDscommerce.entities.Product;
 
 public class ProductMinDTO {
+
     private Long id;
     private String name;
     private Double price;
@@ -15,7 +16,7 @@ public class ProductMinDTO {
         this.imgUrl = imgUrl;
     }
 
-    public ProductMinDTO(Product entity){
+    public ProductMinDTO(Product entity) {
         id = entity.getId();
         name = entity.getName();
         price = entity.getPrice();

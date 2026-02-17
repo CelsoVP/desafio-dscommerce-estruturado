@@ -1,7 +1,9 @@
 package br.com.celsinhovp.ApiDscommerce.repositories;
 
-import br.com.celsinhovp.ApiDscommerce.entities.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import br.com.celsinhovp.ApiDscommerce.entities.Category;
+
 public interface CategoryRepository extends JpaRepository<Category, Long> {
+
 }

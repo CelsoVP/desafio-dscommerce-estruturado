@@ -1,21 +1,18 @@
 package br.com.celsinhovp.ApiDscommerce.dto;
 
-import br.com.celsinhovp.ApiDscommerce.entities.Category;
+import br.com.celsinhovp.ApiDscommerce.entities.User;
 
-public class CategoryDTO {
+public class ClientDTO {
 
 	private Long id;
 	private String name;
 	
-	public CategoryDTO() {
-	}
-	
-	public CategoryDTO(Long id, String name) {
+	public ClientDTO(Long id, String name) {
 		this.id = id;
 		this.name = name;
 	}
 	
-	public CategoryDTO(Category entity) {
+	public ClientDTO(User entity) {
 		id = entity.getId();
 		name = entity.getName();
 	}

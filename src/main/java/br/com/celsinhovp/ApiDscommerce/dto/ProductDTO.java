@@ -1,15 +1,16 @@
 package br.com.celsinhovp.ApiDscommerce.dto;
 
-import br.com.celsinhovp.ApiDscommerce.entities.Category;
-import br.com.celsinhovp.ApiDscommerce.entities.Product;
-import jakarta.persistence.Column;
-
-import jakarta.validation.constraints.*;
-
-
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.celsinhovp.ApiDscommerce.entities.Category;
+import br.com.celsinhovp.ApiDscommerce.entities.Product;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 public class ProductDTO {
 
@@ -24,13 +25,13 @@ public class ProductDTO {
     @Positive(message = "O preço deve ser positivo")
     private Double price;
     private String imgUrl;
-
+    
     @NotEmpty(message = "Deve ter pelo menos uma categoria")
     private List<CategoryDTO> categories = new ArrayList<>();
 
     public ProductDTO() {
     }
-
+    
     public ProductDTO(Long id, String name, String description, Double price, String imgUrl) {
         this.id = id;
         this.name = name;
@@ -46,7 +47,7 @@ public class ProductDTO {
         price = entity.getPrice();
         imgUrl = entity.getImgUrl();
         for (Category cat : entity.getCategories()) {
-            categories.add(new CategoryDTO(cat));
+        	categories.add(new CategoryDTO(cat));
         }
     }
 
@@ -70,7 +71,7 @@ public class ProductDTO {
         return imgUrl;
     }
 
-    public List<CategoryDTO> getCategories() {
-        return categories;
-    }
+	public List<CategoryDTO> getCategories() {
+		return categories;
+	}
 }
