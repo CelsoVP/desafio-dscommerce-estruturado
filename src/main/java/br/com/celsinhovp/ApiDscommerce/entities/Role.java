@@ -29,7 +29,6 @@ public class Role {
         this.id = id;
     }
 
-    //@Override
     public String getAuthority() {
         return authority;
     }
