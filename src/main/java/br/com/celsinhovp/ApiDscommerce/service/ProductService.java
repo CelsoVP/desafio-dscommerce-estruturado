@@ -37,6 +37,12 @@ public class ProductService {
     }
 
     @Transactional
+    public Page<ProductMinDTO> ListarTodos(Pageable pageable) {
+        Page<Product> result = repository.findAll(pageable);
+        return result.map(x -> new ProductMinDTO(x));
+    }
+
+    @Transactional
     public ProductDTO insert(ProductDTO dto){
         Product entity = new Product();
         copyDtoToEntity(dto,entity);
