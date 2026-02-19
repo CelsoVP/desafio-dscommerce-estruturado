@@ -18,6 +18,8 @@ import br.com.celsinhovp.ApiDscommerce.entities.User;
 import br.com.celsinhovp.ApiDscommerce.projections.UserDetailsProjection;
 import br.com.celsinhovp.ApiDscommerce.repositories.UserRepository;
 
+import static org.springframework.security.authorization.AuthenticatedAuthorizationManager.authenticated;
+
 @Service
 public class UserService implements UserDetailsService {
 
@@ -42,8 +44,6 @@ public class UserService implements UserDetailsService {
 		return user;
 	}
 
-
-	
 	protected User authenticated() {
 		try {
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -55,11 +55,10 @@ public class UserService implements UserDetailsService {
 			throw new UsernameNotFoundException("Invalid user");
 		}
 	}
-	
+
 	@Transactional(readOnly = true)
 	public UserDTO getMe() {
 		User entity = authenticated();
 		return new UserDTO(entity);
 	}
-
 }
