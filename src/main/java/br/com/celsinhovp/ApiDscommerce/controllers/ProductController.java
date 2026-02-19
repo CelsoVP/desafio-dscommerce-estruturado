@@ -40,10 +40,11 @@ public class ProductController {
     @GetMapping
     public ResponseEntity<Page<ProductMinDTO>> findAll(
             @RequestParam(name = "name", defaultValue = "") String name,
-            Pageable pageable) {
+            Pageable pageable){
         Page<ProductMinDTO> dto = service.findAll(name, pageable);
         return ResponseEntity.ok(dto);
     }
+
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
