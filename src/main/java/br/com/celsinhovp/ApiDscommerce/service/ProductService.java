@@ -46,6 +46,7 @@ public class ProductService {
         return new ProductDTO(entity);
     }
 
+
     @Transactional
     public ProductDTO update(Long id, ProductDTO dto) {
         try {
@@ -61,12 +62,12 @@ public class ProductService {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     public void delete(Long id) {
-    	if (!repository.existsById(id)) {
-    		throw new ResourceNotFoundException("Recurso não encontrado");
-    	}
-    	try {
-            repository.deleteById(id);    		
-    	}
+        if (!repository.existsById(id)) {
+            throw new ResourceNotFoundException("Recurso não encontrado");
+        }
+        try {
+            repository.deleteById(id);
+        }
         catch (DataIntegrityViolationException e) {
             throw new DatabaseException("Falha de integridade referencial");
         }
@@ -77,12 +78,12 @@ public class ProductService {
         entity.setDescription(dto.getDescription());
         entity.setPrice(dto.getPrice());
         entity.setImgUrl(dto.getImgUrl());
-        
+
         entity.getCategories().clear();
         for (CategoryDTO catDto : dto.getCategories()) {
-        	Category cat = new Category();
-        	cat.setId(catDto.getId());
-        	entity.getCategories().add(cat);
+            Category cat = new Category();
+            cat.setId(catDto.getId());
+            entity.getCategories().add(cat);
         }
     }
 }
