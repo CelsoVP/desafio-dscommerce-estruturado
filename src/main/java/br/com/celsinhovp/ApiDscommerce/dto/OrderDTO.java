@@ -64,6 +64,8 @@ public class OrderDTO {
 		return payment;
 	}
 
+
+	@NotEmpty(message = "Deve ter pelo menos um item")
 	public List<OrderItemDTO> getItems() {
 		return items;
 	}
