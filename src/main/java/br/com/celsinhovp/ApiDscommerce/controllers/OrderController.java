@@ -2,7 +2,6 @@ package br.com.celsinhovp.ApiDscommerce.controllers;
 
 import java.net.URI;
 
-import br.com.celsinhovp.ApiDscommerce.dto.ProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -26,8 +25,7 @@ public class OrderController {
     @Autowired
     private OrderService service;
 
-    //@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_CLIENT')")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_CLIENT')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<OrderDTO> findById(@PathVariable Long id) {
         OrderDTO dto = service.findById(id);
@@ -42,19 +40,4 @@ public class OrderController {
                 .buildAndExpand(dto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);
     }
-
-
-
-    /*
-    @PreAuthorize("hasRole('ROLE_CLIENT')")
-    @PostMapping
-    public ResponseEntity<OrderDTO> insert(@Valid @RequestBody OrderDTO dto) {
-        dto = service.insert(dto);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(dto.getId()).toUri();
-        return ResponseEntity.created(uri).body(dto);
-    }
-    */
-
-
 }
