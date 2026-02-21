@@ -6,13 +6,16 @@ public class ClientDTO {
 
 	private Long id;
 	private String name;
-	
+
+	public ClientDTO() {
+	}
+
 	public ClientDTO(Long id, String name) {
 		this.id = id;
 		this.name = name;
 	}
-	
-	public ClientDTO(User entity) {
+
+	public ClientDTO(User entity){
 		id = entity.getId();
 		name = entity.getName();
 	}
@@ -24,4 +27,6 @@ public class ClientDTO {
 	public String getName() {
 		return name;
 	}
+
+
 }
